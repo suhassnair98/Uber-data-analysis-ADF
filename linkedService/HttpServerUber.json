@@ -1,0 +1,12 @@
+{
+	"name": "HttpServerUber",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://raw.githubusercontent.com/suhassnair98/Uber-data-analysis-ADF/main/uber_data.csv",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
