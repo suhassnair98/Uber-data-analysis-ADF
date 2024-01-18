@@ -1,0 +1,72 @@
+{
+	"name": "destinationlink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "outputfiles",
+				"fileSystem": "myprojectdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "datetime_id",
+				"type": "String"
+			},
+			{
+				"name": "tpep_pickup_datetime",
+				"type": "String"
+			},
+			{
+				"name": "pick_day",
+				"type": "String"
+			},
+			{
+				"name": "pick_month",
+				"type": "String"
+			},
+			{
+				"name": "pick_year",
+				"type": "String"
+			},
+			{
+				"name": "pick_weekday",
+				"type": "String"
+			},
+			{
+				"name": "tpep_dropoff_datetime",
+				"type": "String"
+			},
+			{
+				"name": "drop_day",
+				"type": "String"
+			},
+			{
+				"name": "drop_month",
+				"type": "String"
+			},
+			{
+				"name": "drop_year",
+				"type": "String"
+			},
+			{
+				"name": "drop_weekday",
+				"type": "String"
+			}
+		]
+	}
+}
