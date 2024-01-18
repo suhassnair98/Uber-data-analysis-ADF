@@ -15,6 +15,10 @@
 			"type": "string",
 			"defaultValue": "https://uberdatadumpsuhas.dfs.core.windows.net/"
 		},
+		"AzureSynapseArtifactsUber_properties_typeProperties_endpoint": {
+			"type": "string",
+			"defaultValue": "https://dataworkspace123123.dev.azuresynapse.net"
+		},
 		"HttpServerUber_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/suhassnair98/Uber-data-analysis-ADF/main/uber_data.csv"
@@ -37,6 +41,21 @@
 						"type": "SecureString",
 						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSynapseArtifactsUber')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSynapseArtifacts",
+				"typeProperties": {
+					"endpoint": "[parameters('AzureSynapseArtifactsUber_properties_typeProperties_endpoint')]",
+					"authentication": "MSI",
+					"workspaceResourceId": "/subscriptions/2a3530ec-4f4c-4f24-abf5-825c7cdc20fb/resourceGroups/allresourcesbysks/providers/Microsoft.Synapse/workspaces/dataworkspace123123"
 				}
 			},
 			"dependsOn": []
@@ -70,6 +89,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
+						"fileName": "uber.csv",
 						"fileSystem": "myprojectdata"
 					},
 					"columnDelimiter": ",",
@@ -173,6 +193,53 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "UberDataProcessing",
+						"type": "SynapseNotebook",
+						"dependsOn": [
+							{
+								"activity": "Copy data1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebook": {
+								"referenceName": {
+									"value": "UberDataProcessing",
+									"type": "Expression"
+								},
+								"type": "NotebookReference"
+							},
+							"snapshot": true,
+							"sparkPool": {
+								"referenceName": {
+									"value": "sparkpool12312",
+									"type": "Expression"
+								},
+								"type": "BigDataPoolReference"
+							},
+							"conf": {
+								"spark.dynamicAllocation.enabled": null,
+								"spark.dynamicAllocation.minExecutors": null,
+								"spark.dynamicAllocation.maxExecutors": null
+							},
+							"numExecutors": null
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureSynapseArtifactsUber",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"policy": {
@@ -182,7 +249,8 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/mydata')]",
-				"[concat(variables('factoryId'), '/datasets/DelimitedTextUberData')]"
+				"[concat(variables('factoryId'), '/datasets/DelimitedTextUberData')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureSynapseArtifactsUber')]"
 			]
 		}
 	]

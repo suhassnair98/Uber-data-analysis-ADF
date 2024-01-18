@@ -11,6 +11,9 @@
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://uberdatadumpsuhas.dfs.core.windows.net/"
 		},
+		"AzureSynapseArtifactsUber_properties_typeProperties_endpoint": {
+			"value": "https://dataworkspace123123.dev.azuresynapse.net"
+		},
 		"HttpServerUber_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/suhassnair98/Uber-data-analysis-ADF/main/uber_data.csv"
 		},

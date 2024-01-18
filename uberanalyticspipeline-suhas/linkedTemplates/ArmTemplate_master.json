@@ -15,6 +15,10 @@
 			"type": "string",
 			"defaultValue": "https://uberdatadumpsuhas.dfs.core.windows.net/"
 		},
+		"AzureSynapseArtifactsUber_properties_typeProperties_endpoint": {
+			"type": "string",
+			"defaultValue": "https://dataworkspace123123.dev.azuresynapse.net"
+		},
 		"HttpServerUber_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/suhassnair98/Uber-data-analysis-ADF/main/uber_data.csv"
@@ -51,6 +55,9 @@
 					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"AzureSynapseArtifactsUber_properties_typeProperties_endpoint": {
+						"value": "[parameters('AzureSynapseArtifactsUber_properties_typeProperties_endpoint')]"
 					},
 					"HttpServerUber_properties_typeProperties_url": {
 						"value": "[parameters('HttpServerUber_properties_typeProperties_url')]"
