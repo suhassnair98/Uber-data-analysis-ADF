@@ -1,0 +1,12 @@
+{
+	"name": "AzureSynapseArtifactsUber",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSynapseArtifacts",
+		"typeProperties": {
+			"endpoint": "https://dataworkspace123123.dev.azuresynapse.net",
+			"authentication": "MSI",
+			"workspaceResourceId": "/subscriptions/2a3530ec-4f4c-4f24-abf5-825c7cdc20fb/resourceGroups/allresourcesbysks/providers/Microsoft.Synapse/workspaces/dataworkspace123123"
+		}
+	}
+}
